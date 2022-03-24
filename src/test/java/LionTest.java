@@ -1,3 +1,4 @@
+import com.example.Animal;
 import com.example.Feline;
 import com.example.Lion;
 import org.junit.Test;
@@ -5,6 +6,9 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -36,4 +40,17 @@ public class LionTest {
         lion.getFood();
         Mockito.verify(feline, Mockito.times(1)).getFood(Mockito.anyString());
     }
+
+    @Test(expected = Exception.class)
+    public void doesHaveManeLgbtTest() throws Exception {
+        String sex = "Оно";
+        Lion lion = new Lion(sex, feline);
+    }
+
+    @Test(expected = Exception.class)
+    public void getFoodStrangeTest() throws Exception {
+        Animal animal = new Animal();
+        List<String> actual = animal.getFood("Камни");
+    }
+
 }
