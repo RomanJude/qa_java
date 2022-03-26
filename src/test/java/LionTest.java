@@ -6,9 +6,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -20,8 +18,10 @@ public class LionTest {
     public void getKittensTest() throws Exception {
         String sex = "Самец";
         Lion lion = new Lion(sex, feline);
-        lion.getKittens();
-        Mockito.verify(feline, Mockito.times(1)).getKittens();
+        int expected = 3;
+        Mockito.when(feline.getKittens()).thenReturn(expected);
+        int actual = lion.getKittens();
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -37,8 +37,10 @@ public class LionTest {
     public void lionGetFoodTest() throws Exception {
         String sex = "Самец";
         Lion lion = new Lion(sex, feline);
-        lion.getFood();
-        Mockito.verify(feline, Mockito.times(1)).getFood(Mockito.anyString());
+        List<String> expected = List.of("Test1", "Test2", "Test3");
+        Mockito.when(feline.getFood(Mockito.anyString())).thenReturn(expected);
+        List<String> actual = lion.getFood();
+        assertEquals(expected, actual);
     }
 
     @Test(expected = Exception.class)
@@ -52,5 +54,4 @@ public class LionTest {
         Animal animal = new Animal();
         List<String> actual = animal.getFood("Камни");
     }
-
 }

@@ -1,21 +1,9 @@
 import com.example.Animal;
-import com.example.Lion;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
-@RunWith(MockitoJUnitRunner.class)
-
 public class AnimalTest {
-
-    @Mock
-    Animal animal;
 
     @Test
     public void getFamilyTest (){
@@ -38,18 +26,5 @@ public class AnimalTest {
         Animal animal = new Animal();
         List<String> actual = animal.getFood("Камни");
     }
-
-    @Test
-    public void getFoodHerbivoreMockTest () throws Exception{
-        animal.getFood("Травоядное");
-        Mockito.verify(animal).getFood("Травоядное");
-    }
-
-    @Test
-    public void getFoodPredatorMockTest () throws Exception{
-        animal.getFood("Хищник");
-        Mockito.verify(animal).getFood("Хищник");
-    }
-
 
 }
